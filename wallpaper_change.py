@@ -78,4 +78,4 @@ def change_wallpaper(wallpaper_uri):
 wallpaperFilename = get_wallpaper()
 if wallpaperFilename:
     file_path = os.path.abspath(os.path.join(wallpaperSaveFolder, wallpaperFilename))
-#    change_wallpaper("file://" + file_path)
+    change_wallpaper("file://" + file_path)
