@@ -12,4 +12,8 @@ If you want to change settings, copy settings.example.py to settings.py and modi
 
 ## Cron
 
-Copy gnome.sh from cron folder to repository root and add running that file to crontab.
+Copy gnome.sh from cron folder to repository root and configure it to crontab. For example:
+
+```
+0 * * * * /home/folder/Documents/MLWPWallpaperChanger/gnome.sh >/dev/null 2>&1
+```
