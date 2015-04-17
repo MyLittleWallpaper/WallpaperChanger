@@ -1,4 +1,4 @@
-# My Little Wallpaper - Linux wallpaper switcher
+# My Little Wallpaper - Python wallpaper switcher for Linux
 
 Random wallpaper switcher for My Little Wallpaper.
 
