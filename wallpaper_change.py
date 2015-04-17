@@ -19,11 +19,14 @@ wallpaperSaveFolder = "wallpapers"
 dir_name = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_name)
 
-if os.path.exists("settings.py"):
-    import settings
-    wallpaperGetUrls = settings.wallpaperGetUrls
-    desktopEnvironment = settings.desktopEnvironment
-    wallpaperSaveFolder = settings.wallpaperSaveFolder
+if os.path.exists("settings.ini"):
+    import ConfigParser
+    config = ConfigParser.ConfigParser()
+    config.read("settings.ini")
+    urlsString = config.get("MyLittleWallpaperChanger", "wallpaperGetUrls")
+    wallpaperGetUrls = urlsString.split(" ");
+    desktopEnvironment = config.get("MyLittleWallpaperChanger", "desktopEnvironment")
+    wallpaperSaveFolder = config.get("MyLittleWallpaperChanger", "wallpaperSaveFolder")
 
 def get_wallpaper():
     if not os.path.exists(wallpaperSaveFolder):
@@ -75,4 +78,4 @@ def change_wallpaper(wallpaper_uri):
 wallpaperFilename = get_wallpaper()
 if wallpaperFilename:
     file_path = os.path.abspath(os.path.join(wallpaperSaveFolder, wallpaperFilename))
-    change_wallpaper("file://" + file_path)
+#    change_wallpaper("file://" + file_path)
