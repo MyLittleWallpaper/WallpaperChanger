@@ -4,6 +4,8 @@ Random wallpaper switcher for My Little Wallpaper.
 
 Curtenly only Unity, Gnome and Cinnamon desktop environments are supported.
 
+Looking for Windows equivalent? Check the [software page](http://www.mylittlewallpaper.com/c/all/software) at mylittlewallpaper.com.
+
 ## Usage
 
 Just run the script from command line with `./wallpaper_change.py`
