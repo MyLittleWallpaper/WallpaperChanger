@@ -1,6 +1,6 @@
 # My Little Wallpaper - Linux wallpaper switcher
 
-Random wallpaper switcher for My Little Wallpaper. To change wallpaper searches, please modify `wallpaperGetUrls` variable.
+Random wallpaper switcher for My Little Wallpaper.
 
 Curtenly only Unity, Gnome and Cinnamon desktop environments are supported.
 
