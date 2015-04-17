@@ -8,7 +8,7 @@ Curtenly only Unity, Gnome and Cinnamon desktop environments are supported.
 
 Just run the script from command line with `./wallpaper_change.py`
 
-If you want to change settings, copy settings.example.py to settings.py and modify the file.
+If you want to change settings, copy settings.example.ini to settings.ini and modify the file.
 
 ## Cron
 

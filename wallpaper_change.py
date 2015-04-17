@@ -10,7 +10,7 @@ except ImportError:
 
 import os, sys, getopt, json, random, getopt
 
-# Default settings, please create settings.py file instead of editing this file
+# Default settings, please create settings.ini file instead of editing this file
 wallpaperGetUrls = ["http://www.mylittlewallpaper.com/c/all/api/v2/random.json?size=2&limit=1"]
 desktopEnvironment = "gnome"
 wallpaperSaveFolder = "wallpapers"
