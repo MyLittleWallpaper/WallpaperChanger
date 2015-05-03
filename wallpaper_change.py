@@ -12,8 +12,7 @@ except ImportError:
     # If not found, load urllib2 (Python 3.x)
     from urllib2 import urlopen
 
-import os, sys, getopt, json, random, getopt
-from subprocess import call
+import os, sys, getopt, json, random, getopt, subprocess
 
 # Default settings, please create settings.ini file instead of editing this file
 wallpaperGetUrls = ["http://www.mylittlewallpaper.com/c/all/api/v2/random.json?size=2&limit=1"]
