@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Supported desktop environments
+# - gnome (Unity, Gnome 3)
+# - fluxbox (Fluxbox, Openbox, JWM, AfterStep)
+
 try:
     # Try urllib (Python 2.x)
     from urllib.request import urlopen
@@ -9,6 +13,7 @@ except ImportError:
     from urllib2 import urlopen
 
 import os, sys, getopt, json, random, getopt
+from subprocess import call
 
 # Default settings, please create settings.ini file instead of editing this file
 wallpaperGetUrls = ["http://www.mylittlewallpaper.com/c/all/api/v2/random.json?size=2&limit=1"]
@@ -67,6 +72,11 @@ def change_wallpaper(wallpaper_uri):
     try:
         if desktopEnvironment == "gnome":
             os.system("gsettings set org.gnome.desktop.background picture-uri '%s'" % (wallpaper_uri))
+        elif desktopEnvironment == "fluxbox":
+            try:
+                subprocess.Popen(["fbsetbg", wallpaper_uri])
+            except:
+                sys.stderr.write("Failed to set desktop wallpaper. Please install fbsetbg.")
         else:
             sys.stderr.write("Failed to set desktop wallpaper. Unsupported desktop environment.")
             return False
