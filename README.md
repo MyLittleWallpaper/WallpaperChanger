@@ -4,8 +4,8 @@ Random wallpaper switcher for My Little Wallpaper.
 
 Currently supported desktop environments / window managers:
 
-- Unity, Gnome and Cinnamon
-- Fluxbox, Openbox, JWM, AfterStep (experimental)
+- `gnome` - Unity, Gnome and Cinnamon
+- `fluxbox` - Fluxbox, Openbox, JWM, AfterStep (requires **fbsetbg**, experimental)
 
 Looking for Windows equivalent? Check the [software page](http://www.mylittlewallpaper.com/c/all/software) at mylittlewallpaper.com.
 
@@ -17,7 +17,7 @@ If you want to change settings, copy settings.example.ini to settings.ini and mo
 
 ## Cron
 
-Copy gnome.sh from cron folder to repository root and configure it to crontab. For example:
+Copy equivalent shell script from cron folder to repository root and configure it to crontab. For example:
 
 ```
 0 * * * * /home/folder/Documents/MLWPWallpaperChanger/gnome.sh >/dev/null 2>&1
