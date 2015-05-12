@@ -6,11 +6,18 @@
 # - fluxbox (Fluxbox, Openbox, JWM, AfterStep)
 
 try:
-    # Try urllib (Python 2.x)
-    from urllib.request import urlopen
-except ImportError:
-    # If not found, load urllib2 (Python 3.x)
+    # Python 2
     from urllib2 import urlopen
+except ImportError:
+    # Python 3
+    from urllib.request import urlopen
+
+try:
+	# Python 2
+    from urllib import quote_plus
+except ImportError:
+	# Python 3
+    from urllib.parse import quote_plus
 
 import os, sys, getopt, json, random, getopt, subprocess
 
@@ -18,19 +25,36 @@ import os, sys, getopt, json, random, getopt, subprocess
 wallpaperGetUrls = ["http://www.mylittlewallpaper.com/c/all/api/v2/random.json?size=2&limit=1"]
 desktopEnvironment = "gnome"
 wallpaperSaveFolder = "wallpapers"
+favouritesUsername = ""
+favouritesToken = ""
 
 # Change to current directory
 dir_name = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_name)
 
 if os.path.exists("settings.ini"):
-    import ConfigParser
-    config = ConfigParser.ConfigParser()
+    try:
+        import ConfigParser as cParser
+    except ImportError:
+        import configparser as cParser
+    
+    config = cParser.ConfigParser()
     config.read("settings.ini")
-    urlsString = config.get("MyLittleWallpaperChanger", "wallpaperGetUrls")
-    wallpaperGetUrls = urlsString.split(" ");
+    if config.has_option("MyLittleWallpaperChanger", "wallpaperGetUrls"):
+        urlsString = config.get("MyLittleWallpaperChanger", "wallpaperGetUrls")
+        wallpaperGetUrls = urlsString.split(" ");
     desktopEnvironment = config.get("MyLittleWallpaperChanger", "desktopEnvironment")
     wallpaperSaveFolder = config.get("MyLittleWallpaperChanger", "wallpaperSaveFolder")
+    if config.has_option("MyLittleWallpaperChanger", "favouritesUsername"):
+        favouritesUsername = config.get("MyLittleWallpaperChanger", "favouritesUsername")
+    if config.has_option("MyLittleWallpaperChanger", "favouritesToken"):
+        favouritesToken = config.get("MyLittleWallpaperChanger", "favouritesToken")
+
+if favouritesUsername and favouritesToken:
+    import hashlib, uuid
+    requestId = uuid.uuid4().hex
+    urlHash = hashlib.sha256(str(favouritesUsername + favouritesToken + requestId).encode('utf-8')).hexdigest()
+    wallpaperGetUrls = ["http://www.mylittlewallpaper.com/c/all/api/v2/favourites.json?limit=1&sort=random&requestId=" + requestId + "&userName=" + quote_plus(favouritesUsername) + "&hash=" + urlHash]
 
 def get_wallpaper():
     if not os.path.exists(wallpaperSaveFolder):
@@ -41,9 +65,9 @@ def get_wallpaper():
     
     # Fetch json from server
     try:
-        jsonData = json.loads(urlopen(wallpaperGetUrl, timeout = 60).read())
-    except Exception, e:
-        print e
+        jsonData = json.loads(urlopen(wallpaperGetUrl, timeout = 60).read().decode('utf-8'))
+    except Exception as e:
+        print(e)
         return ""
     
     # Check if json contains a wallpaper
@@ -59,8 +83,8 @@ def get_wallpaper():
                     fileHandler.close()
                 else:
                     raise Exception("Empty file, exiting")
-            except Exception, e:
-                print e
+            except Exception as e:
+                print(e)
                 return ""
         
         return imageName
@@ -80,8 +104,8 @@ def change_wallpaper(wallpaper_uri):
             sys.stderr.write("Failed to set desktop wallpaper. Unsupported desktop environment.")
             return False
         return True
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
         return False
 
 wallpaperFilename = get_wallpaper()
