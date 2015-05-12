@@ -15,6 +15,12 @@ Just run the script from command line with `./wallpaper_change.py`
 
 If you want to change settings, copy settings.example.ini to settings.ini and modify the file.
 
+### Favourites
+
+To be able to switch between favourite wallpapers randomly, API token is needed. This can be found from [account settings](http://www.mylittlewallpaper.com/c/all/account).
+
+An example for settings can be found in settings.example.fav.ini
+
 ## Cron
 
 Copy equivalent shell script from cron folder to repository root and configure it to crontab. For example:
