@@ -17,7 +17,7 @@ If you want to change settings, copy settings.example.ini to settings.ini and mo
 
 ### Favourites
 
-To be able to switch between favourite wallpapers randomly, API token is needed. This can be found from [account settings](http://www.mylittlewallpaper.com/c/all/account).
+To be able to switch between favourite wallpapers randomly, API token is needed. This can be found in [account settings](http://www.mylittlewallpaper.com/c/all/account).
 
 An example for settings can be found in settings.example.fav.ini
 
