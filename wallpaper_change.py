@@ -28,8 +28,8 @@ import getopt
 import subprocess
 
 # Default settings, create settings.ini file instead of editing this file
-wallpaperGetUrls =
-["http://www.mylittlewallpaper.com/c/all/api/v2/random.json?size=2&limit=1"]
+wallpaperGetUrls = ["http://www.mylittlewallpaper.com/c/all/api/v2/" +
+                    "random.json?size=2&limit=1"]
 desktopEnvironment = "gnome"
 wallpaperSaveFolder = "wallpapers"
 favouritesUsername = ""
