@@ -21,10 +21,8 @@ except ImportError:
 
 import os
 import sys
-import getopt
 import json
 import random
-import getopt
 import subprocess
 
 # Default settings, create settings.ini file instead of editing this file
