@@ -37,7 +37,7 @@ if os.path.exists("settings.ini"):
         import ConfigParser as cParser
     except ImportError:
         import configparser as cParser
-    
+
     config = cParser.ConfigParser()
     config.read("settings.ini")
     if config.has_option("MyLittleWallpaperChanger", "wallpaperGetUrls"):
@@ -59,17 +59,17 @@ if favouritesUsername and favouritesToken:
 def get_wallpaper():
     if not os.path.exists(wallpaperSaveFolder):
         os.makedirs(wallpaperSaveFolder)
-    
+
     random.shuffle(wallpaperGetUrls)
     wallpaperGetUrl = wallpaperGetUrls[0]
-    
+
     # Fetch json from server
     try:
         jsonData = json.loads(urlopen(wallpaperGetUrl, timeout = 60).read().decode('utf-8'))
     except Exception as e:
         print(e)
         return ""
-    
+
     # Check if json contains a wallpaper
     for wallpaper in jsonData["result"]:
         fullImageUrl = wallpaper["fullImageURL"]
@@ -86,7 +86,7 @@ def get_wallpaper():
             except Exception as e:
                 print(e)
                 return ""
-        
+
         return imageName
     return ""
 
