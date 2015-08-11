@@ -34,8 +34,8 @@ favouritesUsername = ""
 favouritesToken = ""
 
 # Change to current directory
-dir_name = os.path.dirname(os.path.realpath(__file__))
-os.chdir(dir_name)
+dirName = os.path.dirname(os.path.realpath(__file__))
+os.chdir(dirName)
 
 if os.path.exists("settings.ini"):
     try:
@@ -71,7 +71,7 @@ if favouritesUsername and favouritesToken:
                         quote_plus(favouritesUsername) + "&hash=" + urlHash]
 
 
-def get_wallpaper():
+def getWallpaper():
     if not os.path.exists(wallpaperSaveFolder):
         os.makedirs(wallpaperSaveFolder)
 
@@ -108,15 +108,15 @@ def get_wallpaper():
     return ""
 
 
-def change_wallpaper(wallpaper_uri):
+def changeWallpaper(wallpaperUri):
     # Todo: Add support for other desktop environments
     try:
         if desktopEnvironment == "gnome":
             os.system("gsettings set org.gnome.desktop.background " +
-                      "picture-uri '%s'" % (wallpaper_uri))
+                      "picture-uri '%s'" % (wallpaperUri))
         elif desktopEnvironment == "fluxbox":
             try:
-                subprocess.Popen(["fbsetbg", wallpaper_uri])
+                subprocess.Popen(["fbsetbg", wallpaperUri])
             except:
                 sys.stderr.write("Failed to set desktop wallpaper. Please " +
                                  "install fbsetbg.")
@@ -129,8 +129,8 @@ def change_wallpaper(wallpaper_uri):
         print(e)
         return False
 
-wallpaperFilename = get_wallpaper()
+wallpaperFilename = getWallpaper()
 if wallpaperFilename:
-    file_path = os.path.abspath(os.path.join(wallpaperSaveFolder,
-                                             wallpaperFilename))
-    change_wallpaper("file://" + file_path)
+    filePath = os.path.abspath(os.path.join(wallpaperSaveFolder,
+                                            wallpaperFilename))
+    changeWallpaper("file://" + filePath)
